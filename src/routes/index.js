@@ -1,9 +1,9 @@
-import Header from '../templates/Header';
-import Home from '../pages/Home';
-import Character from '../pages/Character';
-import Error404 from '../pages/Error404';
-import getHash from '../utils/getHash';
-import resolveRoutes from '../utils/resolveRoutes';
+import Home from '../pages/Home.js';
+import Character from '../pages/Character.js';
+import Error404 from '../pages/Error404.js';
+import getHash from '../utils/getHash.js';
+import resolveRoutes from '../utils/resolveRoutes.js';
+import logo from '../assets/images/cientifico.jpg';
 
 const routes = {
     '/':Home,
@@ -11,16 +11,19 @@ const routes = {
     '/Contact': 'Contact',
 };
 
-const router = async () => {
-    const header = null || document.querySelector('#header');
+ const router = async () => {
     const content = null || document.querySelector('#content');
-
-    header.innerHTML = await Header();
-    let hash = getHash();
-    //console.log(hash);
-    let route = await resolveRoutes(hash);
-    let render = routes[route] ? routes[route] : Error404;
+    const header = null  || document.querySelector('#logo');
+    header.src = logo;
+    let hash = getHash(); //primero se obtiene el hash de en donde se encuentra
+    let route = await resolveRoutes(hash); //se valida la ruta si es la raiz o un id
+    let render; 
+    if (routes[route]) {
+        render=routes[route];
+    } else {
+        render=Error404;
+    }
     content.innerHTML = await render();
-};
+}; 
 
 export default router;
