@@ -21,7 +21,7 @@ const rulesForCss =  {  //esta configuracion es para que podamos obtener los est
 };
 
 const rulesForImages = { //esta configuracion es para que nuestras imagenes se puedan cargar en nuestro proyecto importandolas como variables
-  test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  test: /\.(jpg|png)$/i,
   type: 'asset/resource',
 };
 
@@ -49,3 +49,9 @@ module.exports = {
   },
   //devtool: 'source-map',
 };
+
+//-------Anotaciones---------------------------///
+//babel-loader nos permite usar babel con webpack
+//@babel/core es babel en general
+//@babel/preset-env trae y te permite usar las ultimas características de JavaScript
+//@babel/plugin-transform-runtime te permite trabajar con todo el tema de asincronismo como ser async y await
